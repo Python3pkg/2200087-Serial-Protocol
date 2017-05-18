@@ -303,9 +303,9 @@ def mainLoop(args):
     	global grapher 
 	grapher = grapher([0])
 	if args.csv:
-	    print((args.port[0] + ','))
+	    print(args.port[0] + ',')
 	if not args.csv:
-	    print(("| " + args.port[0] + " |"))
+	    print("| " + args.port[0] + " |")
     	while(True):
             chunk = getSerialChunk(ser)
             if args.graph:
@@ -316,7 +316,7 @@ def mainLoop(args):
                     for line in graph:
                         print(line)
                 except:
-		    print((strToDigits(chunk)[-1]))
+		    print(strToDigits(chunk)[-1])
 		    try:
 		    	if strToDigits(chunk)[-1] == 'C' or strToDigits(chunk)[-1] == 'F':
 			    floatVal = float(strToDigits(chunk)[0:-1])
@@ -332,14 +332,14 @@ def mainLoop(args):
 		if "None" not in digits:
 		    if args.csv:
 		        if not args.quiet:
-                    	    print((digits + ' ' + flags + ","))
+                    	    print(digits + ' ' + flags + ",")
 		        if args.quiet:
-		    	    print((digits + ","))
+		    	    print(digits + ",")
 		    if not args.csv:
 		        if not args.quiet:
-                            print(("| " + digits + ' ' + flags + " |"))
+                            print("| " + digits + ' ' + flags + " |")
                         if args.quiet:
-                            print(("| " + digits + " |"))
+                            print("| " + digits + " |")
     if len(args.port) > 1:
 	if args.graph:
 	    print("This program does not support graphing two multimeters at the same time. ")
