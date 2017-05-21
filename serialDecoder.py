@@ -287,7 +287,7 @@ def strToDigits(strOfBytes): #converts a string of space separated hexadecimal b
     for number in reversed(list(range(1,5))): #reversed rabge so that we iterate through values 4,3,2,1 in that order due to how serial protocol works (see readme.md)
         out = processDigit(number,binArray)
         if out[1] == -1:
-            print(("Protocol Error: Please start an issue here: https://github.com/ddworken/2200087-Serial-Protocol/issues and include the following data: '" + strOfBytes + "'"))
+            print("Protocol Error: Please start an issue here: https://github.com/ddworken/2200087-Serial-Protocol/issues and include the following data: '" + strOfBytes + "'")
             exit(1)
         if out[0] == True: #append the decimal point if the decimalPointBool in the tuple is true
             digits += "."
@@ -303,9 +303,9 @@ def mainLoop(args):
     	global grapher 
 	grapher = grapher([0])
 	if args.csv:
-	    print((args.port[0] + ','))
+	    print(args.port[0] + ',')
 	if not args.csv:
-	    print(("| " + args.port[0] + " |"))
+	    print("| " + args.port[0] + " |")
     	while(True):
             chunk = getSerialChunk(ser)
             if args.graph:
@@ -316,7 +316,7 @@ def mainLoop(args):
                     for line in graph:
                         print(line)
                 except:
-		    print((strToDigits(chunk)[-1]))
+		    print(strToDigits(chunk)[-1])
 		    try:
 		    	if strToDigits(chunk)[-1] == 'C' or strToDigits(chunk)[-1] == 'F':
 			    floatVal = float(strToDigits(chunk)[0:-1])
@@ -332,14 +332,14 @@ def mainLoop(args):
 		if "None" not in digits:
 		    if args.csv:
 		        if not args.quiet:
-                    	    print((digits + ' ' + flags + ","))
+                    	    print(digits + ' ' + flags + ",")
 		        if args.quiet:
-		    	    print((digits + ","))
+		    	    print(digits + ",")
 		    if not args.csv:
 		        if not args.quiet:
-                            print(("| " + digits + ' ' + flags + " |"))
+                            print("| " + digits + ' ' + flags + " |")
                         if args.quiet:
-                            print(("| " + digits + " |"))
+                            print("| " + digits + " |")
     if len(args.port) > 1:
 	if args.graph:
 	    print("This program does not support graphing two multimeters at the same time. ")
